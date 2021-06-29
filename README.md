@@ -9,63 +9,78 @@ Læs mere om komponenter på https://reactjs.org/docs/components-and-props.html
 
 1. Lav et nyt expo projekt i din projekt mappe med `expo init 1_komponenter`og åben projektet i webstorm
 
+
 2. Opret en mappe i dit nyoprettet projekt ved navn components 
 
-3.	Lav en komponent ny komponent der indeholder der indeholder et tekst element  
+
+3.	Lav en komponent ny komponent kaldt First component, og brug templaten nederst i guiden. Tilføj nu et `<Text></Text>` element i return  
     ![Screenshot](s1.png)
 
-4.	Importer din komponent i App.js og implementer den i App.js’ render() funktion. (Husk at render() kun kan returnere ét element)
 
-5.	Kør appen og se om den viser teksten.
-      Props
-6.	Send nu en prop til din komponent (title vil blive benyttet som eksempel her). I dit component tag i App.js tilføjer du title inde i dets start-tag. Husk det er ligesom når vi eksempelvis definerer en style til et tag. Du kan kalde den hvad du vil.
+4.	Importer din komponent i App.js og implementer den i App.js’ return funktion. (Husk at return() kun kan returnere ét element)
+    `import FirstComponent from "./components/FirstComponent";`
+      
 
-7.	Inde i din komponent skal du så slette den tekst der før stod i dit <Text>...</Text> tag og prøve i stedet for at få fat i den prop du sendte fra App.js.
+5.	Kør appen og se om den viser teksten ( hvis den ikke viser teksten, læs hvad react native giver og fejl og fiks)
+
+      
+6.	Lav nu en komponent kaldt PropsComponent og brug komponent templaten. I templaten skriv nu `const {name} = props ` over return funktionen. Og lav nu et `<Text></Text>` element som har proppen name i sig med `{name}`, og importer ligesom FirstComponent i App.js.
+
+
+7.	I App.js send nu dit navn værdi via en prop kald name ´<PropComponent name={''}/>´
+
 
 8.	Kør appen og se om den viser teksten, som du har angivet i App.js.
 
-9.	Opret flere instanser af din komponent i App.js’ render() metode og send forskellige tekster til hver af dem, igennem den prop du definerede i opgave 5, her title.
-      State & Eventhandler
-      Nu skal du prøve at ændre staten af din komponent, når der trykkes på en knap.
-10.	Sæt App.js’ ”initial state” ved at definere en state i App-komponenten, dvs et objekt med en given værdi som default value. Eksempelvis state = { boxTitle : ‘Empty box’}
 
-10.	Importer Button komponenten fra ’react-native’ i App.js og tilføj den oven over din komponent i render() funktionen.
+9.	Opret flere instanser af din komponent i App.js’ render() metode og send forskellige tekster til hver af dem,
+      
 
-11.	En Button skal altid have en title og en onPress prop. Til onPress vil vi smide en reference ind til en funktion du opretter oven over render() funktionen. Opret en funktion ala handleButtonPress = () => {...}.
+10.	Opret nu et ny komponent kaldt ´ButtonComponent´ og deri lav en ny instans af active over return funktionen med useState() funktionen med en default value false:  `const [active, setActive] = useState(false)`
 
-12.	Giv handleButtonPress som reference til onPress prop for Button komponenten.
 
-13.	Inde i onButtonPress skal du ændre App.js’ state ved brug af setState() funktionen og smide en ny value ind for boxTitle.
+10. b) 	Opret nu et `Text` element hvor du har en conditional render funktion med en tilhørende knap som kan ændre på active Staten
+    1. læs mere https://reactjs.org/docs/conditional-rendering.html#inline-if-else-with-conditional-operator ( se bort fra this.state)
 
-14.	Afslutningsvis skal du sørge for at din komponents tag i App.js (f.eks. <Box>) refererer til App.js’ state.boxTitle.
+    
+11.	En Button skal altid have en title og en onPress prop. Til onPress vil vi ændre status på active med setActive: `onPress={()=> setActive(!active)}`  funktionen.
+    1. Prøv at se om du kan forklare hvad der sker i onpress funktionen 
 
-15.	Nu burde din app ændre sig fra at have din komponent til at sige ”empty box” til den nye value du skrev i opgave 13, når du trykker på knappen.
-       Ref
-       Nu skal du prøve at ændre teksten i din komponent ved at have et inputfelt, hvor man kan skrive noget, og så have en knap, hvor, når man trykker på den, ændrer teksten i din komponent.
+12.	Importer nu `ButtonComponent` ind i App.js, og test din nye knap
 
-16.	I App.js laver du en ref property med React.createRef(). Brug denne som ref i dit component tag. Eksempelvis <Box ref={this.box} />
 
-17.	Importer TextInput elementet fra ’react-native’ i App.js og tilføj den over din Button i render() funktionen.
+13.	Opret nu et ny komponent kaldt ´InputComponent´ og deri lav en ny instans af inputValue over return funktionen med useState() funktionen med en tom string default værdi "";
 
-18.	Find information omkring TextInput i React Native’s API her https://facebook.github.io/react-native/docs/components-and-apis
 
-19.	Her vil du finde alt hvad man kan med et TextInput element. Du skal have fat i den tekst en bruger skriver inde i TextInput. Find den korrekte event (starter med ”on,..”). Den skal indeholde ”den ændrede tekst” (den tekst der bliver skrevet inde i den) som et argument. Giv det et forsøg. Hvis du ikke kan finde den, kan du trykke her.
+14.	I din `<View></View>` lav et TextInput felt med et `style prop, onChangeText og value`. Udfyld onChange med setInputeValue funktionen. I value sæt lig med inputValue fx: `value={inputValue}`
+    Læs mere https://reactnative.dev/docs/textinput 
+       
 
-20.	Giv den også en placeholder, hvor der står ”Indsæt tekst her”.
+15. Importer nu `InputComponent` ind i App.js, og test dit nye input felt
 
-21.	Når du har fundet den rigtige metode, definerer du den inde i <TextInput> tagget. Opret en funktion ligesom handleButtonPress() der tager imod et argument ’value’. Eksempelvis handleTextChange = (value) => {...}.
 
-22.	Inde i denne ændrer du staten af din property (boxTitle i eksemplet) til at være lig value.
+16. Opret en ny komponent kaldt`AssetComponent` i Components, og gør klar til at du skal bruge en prop kaldt url ( ligesom i PropsComponent )
 
-23.	Ændr nu din handleButtonPress til at ændre din komponents titel ved at få fat på dens ref.
-       Der er brug for at introducere en state i din komponent, bruge den i render() og lave en setTitle metode som opdaterer komponentens state når den kaldes.
-       Kaldet fra handleButtonPress kan f.eks. se se således ud ”this.box.current.setTitle(…”
 
-24.	Appen burde nu give dig mulighed for at skrive en tekst i et tekstfelt, og trykke på en knap, der ændrer din komponents titel til den tekst som du skrev i TextInput feltet.
+17. I `<View></View>` hent et Image element og i source propen sæt AssetComponents prop url som værdi. Læs mere https://reactnative.dev/docs/image
 
-25.	Brug components til at lave et UI hvor du anvender input, output og en knap f.eks. til at brugeren indtaster en tekst som konfirmeres eller noget helt andet
+
+16. Import øverst i App.js et billede fra assets mappen: `import FirstImage from "./assets/favicon.png"` , og derefter importer AssetComponent og placer den i return funktionen med proppen url
+
+17. giv nu `AssetComponent` FirstImage som url værdien --> `<AssetComponent url={FirstImage}/> `
+    (Vigtigt: giv width og height til Image)
+    
+18. Overfør til sidst dit eget billede til projekt mappen og få det vist i din app
+
+
+**Ekstra:** Til sidst lav nu en multi funktions komponent hvor du anvender input, output og en knap f.eks. til at brugeren indtaster en tekst som konfirmeres eller noget helt andet
  
 
+       
+#### Tips
+- Brug console.log(værdi) til når du debugger
+- Læs i appen hvad react native brokker sig over 
+- Læs docsen inde på https://reactnative.dev/docs/getting-started 
 
 #### Komponent template
 
@@ -73,7 +88,8 @@ Læs mere om komponenter på https://reactjs.org/docs/components-and-props.html
 import React from 'react';
 import { StyleSheet, View} from 'react-native';
 
-const App = () => {
+{/*HUSK AT SKIFTE NAVN*/}
+const FirstComponent = (props) => {
 
     return (
             <View style={styles.container}>
@@ -81,7 +97,9 @@ const App = () => {
             </View>
     );
 }
-export default App;
+
+{/*HUSK AT SKIFTE NAVN*/}
+export default FirstComponent;
 
 const styles = StyleSheet.create({
     container: {
