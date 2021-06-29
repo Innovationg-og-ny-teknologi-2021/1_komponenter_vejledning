@@ -1,33 +1,33 @@
 # 1_komponenter_vejledning
 Øvelser 2– components, props, state, eventhandler og ref
 
-###slut resultat
+### slut resultat
+![Screenshot](gif.gif)
 
-
-#Component
+# Component
 Læs mere om komponenter på https://reactjs.org/docs/components-and-props.html
 
 1. Lav et nyt expo projekt i din projekt mappe med `expo init 1_komponenter`og åben projektet i webstorm
 
 2. Opret en mappe i dit nyoprettet projekt ved navn components 
 
-2.	Lav en komponent, der indeholder et <Text> tag med noget tekst indeni. Kan den f.eks. Box.
+3.	Lav en komponent ny komponent der indeholder der indeholder et tekst element  
+    ![Screenshot](s1.png)
 
+4.	Importer din komponent i App.js og implementer den i App.js’ render() funktion. (Husk at render() kun kan returnere ét element)
 
-3.	Importer din komponent i App.js og implementer den i App.js’ render() funktion. (Husk at render() kun kan returnere ét element)
-
-4.	Kør appen og se om den viser teksten.
+5.	Kør appen og se om den viser teksten.
       Props
-5.	Send nu en prop til din komponent (title vil blive benyttet som eksempel her). I dit component tag i App.js tilføjer du title inde i dets start-tag. Husk det er ligesom når vi eksempelvis definerer en style til et tag. Du kan kalde den hvad du vil.
+6.	Send nu en prop til din komponent (title vil blive benyttet som eksempel her). I dit component tag i App.js tilføjer du title inde i dets start-tag. Husk det er ligesom når vi eksempelvis definerer en style til et tag. Du kan kalde den hvad du vil.
 
-6.	Inde i din komponent skal du så slette den tekst der før stod i dit <Text>...</Text> tag og prøve i stedet for at få fat i den prop du sendte fra App.js.
+7.	Inde i din komponent skal du så slette den tekst der før stod i dit <Text>...</Text> tag og prøve i stedet for at få fat i den prop du sendte fra App.js.
 
-7.	Kør appen og se om den viser teksten, som du har angivet i App.js.
+8.	Kør appen og se om den viser teksten, som du har angivet i App.js.
 
-8.	Opret flere instanser af din komponent i App.js’ render() metode og send forskellige tekster til hver af dem, igennem den prop du definerede i opgave 5, her title.
+9.	Opret flere instanser af din komponent i App.js’ render() metode og send forskellige tekster til hver af dem, igennem den prop du definerede i opgave 5, her title.
       State & Eventhandler
       Nu skal du prøve at ændre staten af din komponent, når der trykkes på en knap.
-9.	Sæt App.js’ ”initial state” ved at definere en state i App-komponenten, dvs et objekt med en given værdi som default value. Eksempelvis state = { boxTitle : ‘Empty box’}
+10.	Sæt App.js’ ”initial state” ved at definere en state i App-komponenten, dvs et objekt med en given værdi som default value. Eksempelvis state = { boxTitle : ‘Empty box’}
 
 10.	Importer Button komponenten fra ’react-native’ i App.js og tilføj den oven over din komponent i render() funktionen.
 
@@ -65,3 +65,32 @@ Læs mere om komponenter på https://reactjs.org/docs/components-and-props.html
 
 25.	Brug components til at lave et UI hvor du anvender input, output og en knap f.eks. til at brugeren indtaster en tekst som konfirmeres eller noget helt andet
  
+
+
+#### Komponent template
+
+```
+import React from 'react';
+import { StyleSheet, View} from 'react-native';
+
+const App = () => {
+
+    return (
+            <View style={styles.container}>
+               {/*alt vores content*/}
+            </View>
+    );
+}
+export default App;
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: '#fff',
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+});
+`
+
+
