@@ -1,7 +1,7 @@
 # 1_komponenter_vejledning
-Øvelser 2– components, props, state, eventhandler og ref
+### Components, props, states og assets
 
-### slut resultat
+#### slut resultat
 ![Screenshot](gif.gif)
 
 # Component
