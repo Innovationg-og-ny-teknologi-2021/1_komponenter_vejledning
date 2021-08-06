@@ -13,7 +13,7 @@ Læs mere om komponenter på https://reactjs.org/docs/components-and-props.html
 2. Opret en mappe i dit nyoprettet projekt ved navn components 
 
 
-3.	Lav en komponent ny komponent kaldt First component, og brug templaten nederst i guiden. Tilføj nu et `<Text></Text>` element i return  
+3.	Lav en ny komponent kaldt First component, og brug templaten nederst i guiden. Tilføj nu et `<Text></Text>` element i return  
     ![Screenshot](s1.png)
 
 
