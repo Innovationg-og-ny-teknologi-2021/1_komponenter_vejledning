@@ -17,7 +17,7 @@ Læs mere om komponenter på https://reactjs.org/docs/components-and-props.html
     ![Screenshot](s1.png)
 
 
-4.	Importer din komponent i App.js og implementer den i App.js’ return funktion. (Husk at return() kun kan returnere ét element)
+4.	Importer din komponent i App.js og implementer den i App.js’ return funktion. (Husk at return() kun kan returnere ét parent-element | evt google hvad et parent element og children elementer er)
     `import FirstComponent from "./components/FirstComponent";`
       
 
