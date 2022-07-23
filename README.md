@@ -13,30 +13,32 @@ Læs mere om komponenter på https://reactjs.org/docs/components-and-props.html
 2. Opret en mappe i dit nyoprettet projekt ved navn components 
 
 
-3.	Lav en ny komponent kaldt "FirstComponent", og brug templaten nederst i guiden. Tilføj nu et `<Text></Text>` element i return  
+3. Lav en ny komponent kaldt "FirstComponent", og brug templaten nederst i guiden. Tilføj nu et `<Text></Text>` element i return  
     ![Screenshot](s1.png)
+    Sørg for at importere `Text` øverst!
 
 
-4.	Importer din komponent i App.js og implementer den i App.js’ return funktion. (Husk at return() kun kan returnere ét parent-element | evt google hvad et parent element og children elementer er)
+4. Importer din komponent i App.js og implementer den i App.js’ return funktion i viewet. (Husk at return() kun kan returnere ét parent-element | evt google hvad et parent element og children elementer er)
     `import FirstComponent from "./components/FirstComponent";`
-      
+    `<FirstComponent/>`
 
-5.	Kør appen og se om den viser teksten ( hvis den ikke viser teksten, læs hvad react native giver og fejl og fiks)
+
+5.	Kør appen og se om den viser teksten (hvis den ikke viser teksten, læs hvad react native giver og fejl og fiks)
 
       
 6.	Lav nu en komponent kaldt PropsComponent og brug komponent templaten. I templaten skrives nu `const {name} = props ` over return funktionen. Og lav nu et `<Text></Text>` element som indeholder en prop, der kaldes "name". name modtager argumentet, `{name}`, hvorefter denne importeres i App.js - på samme måde, som med  FirstComponent.
 
 
-7.	I App.js skal værdien af name-argumentet defineres; ´<PropComponent name={''}/>´
+7.	I App.js skal værdien af name-argumentet defineres; ´<PropComponent name={'Jeres navne'}/>´
 
 
 8.	Kør appen og se om den viser teksten, som du har angivet i App.js.
 
 
-9.	Opret flere instanser af din komponent i App.js’ render() metode og send forskellige tekster til hver af dem,
+9.	Opret flere instanser af din komponent i App.js’ render() metode og send forskellige tekster til hver af dem
       
 
-10.	Opret nu en ny komponent kaldet ´ButtonComponent´. Deri laves en nu en const instans, active, ved brug af useState(). active skal i udgangspunkt have værdien false:  `const [active, setActive] = useState(false)`
+10.	Opret nu en ny komponent kaldet ´ButtonComponent´. Deri laves en const instans, active, ved brug af useState(). active skal i udgangspunkt have værdien false:  `const [active, setActive] = useState(false)`
 
 
 10. b) 	Opret nu et `Text` element, der indeholder en conditional render funktion med en tilhørende knap, som kan ændre på active Staten
@@ -49,23 +51,27 @@ Læs mere om komponenter på https://reactjs.org/docs/components-and-props.html
 12.	Importer nu `ButtonComponent` i App.js, og test din nye knap
 
 
-13.	Opret nu en ny komponent der kaldes ´InputComponent´. Deri laves en ny instans af inputValue ved brug af useState(). inputValue skal i udgangspunktet værdisættes ved brug af en tom string "";
+13. Opret nu en ny komponent der kaldes ´InputComponent´. Deri laves en ny const instans, inputValue, ved brug af useState(). inputValue skal som udgangspunkt værdisættes ved brug af en tom string "";
+    1. se punkt 10
 
 
-14.	I din `<View></View>` laves et TextInput felt med et `style prop, onChangeText og value`. Udfyld onChange med setInputeValue funktionen. values egenskaben sættes ligmed inputValue fx: `value={inputValue}`
-    Læs mere https://reactnative.dev/docs/textinput 
+14. I din `<View></View>` i InputComponent laves et TextInput felt med et `style prop, onChangeText og value`. Udfyld onChangeText med setInputValue funktionen: `onChangeText={(txt) => setInputValue(txt)}`. Values egenskaben sættes lig med inputValue fx: `value={inputValue}`
+    Prøv jer frem med stylingen
+    Læs mere https://reactnative.dev/docs/textinput
+    1. Husk at importere TextInput øverst
        
 
 15. Importer nu `InputComponent` ind i App.js, og test dit nye input felt
 
 
-16. Opret en ny komponent ved navn `AssetComponent` i Components, og gør klar til at du skal bruge en prop kaldt url ( ligesom i PropsComponent )
+16. Opret en ny komponent ved navn `AssetComponent` i Components, og indsæt `url` som prop.
 
 
-17. I `<View></View>` hentes et Image element. I AssetComponent oprettes en src-prop, der kaldes; url(stien til billede). Læs mere https://reactnative.dev/docs/image
+17. I `<View></View>` hentes et Image element. Heri oprettes en src-prop: `source{url}` Læs mere https://reactnative.dev/docs/image
+    1. prøv jer frem med stylingen af billedet
 
 
-16. Import øverst i App.js et billede fra assets mappen: `import FirstImage from "./assets/favicon.png"` , og derefter importer AssetComponent og placer den i return funktionen med proppen url
+16. Import et billede fra assets mappen øverst i App.js: `import FirstImage from "./assets/favicon.png"` , og derefter importer AssetComponent og placer den i return funktionen med proppen url
 
 17. Giv nu `AssetComponent`, FirstImage som url værdien --> `<AssetComponent url={FirstImage}/> `
     (Vigtigt: giv width og height til Image)
