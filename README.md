@@ -4,8 +4,13 @@
 #### slut resultat
 ![Screenshot](gif.gif)
 
-# Component
+# Læs om View og Component
+Læs mere om View her https://reactnative.dev/docs/view
+Til dette fag, benytter vi os primært af Functions Komponenter
+
 Læs mere om komponenter på https://reactjs.org/docs/components-and-props.html
+
+# Component
 
 1. Lav et nyt expo projekt i din projekt mappe med `expo init 1_komponenter`og åben projektet i webstorm
 
