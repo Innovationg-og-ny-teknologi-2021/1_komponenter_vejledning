@@ -44,7 +44,7 @@ Til dette fag, benytter vi os primært af Functions Komponenter
 8.	Kør appen og se om den viser teksten, som du har angivet i App.js.
 
 
-9.	Opret flere instanser af din komponent i App.js’ render() metode og send forskellige tekster til hver af dem
+9.	Opret flere instanser af din komponent i App.js’ return() og send forskellige tekster til hver af dem
       
 
 10.	Opret nu en ny komponent kaldet ´ButtonComponent´. Deri laves en const instans, active, ved brug af useState(). active skal i udgangspunkt have værdien false:  `const [active, setActive] = useState(false)`
