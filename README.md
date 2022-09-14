@@ -63,8 +63,8 @@ Til dette fag, benytter vi os primært af Functions Komponenter
 13. Opret nu en ny komponent der kaldes ´InputComponent´. Deri laves en ny const instans, inputValue, ved brug af useState(). inputValue skal som udgangspunkt værdisættes ved brug af en tom string "";
     1. se punkt 10
     2. Huks at importere dine components øverst
-    3. `import React, {useState} from 'react'
-        import {Text, TextInput, View} from 'react-native'`
+    3. `import React, {useState} from 'react'`
+        `import {Text, TextInput, View} from 'react-native'`
 
 
 14. I din `<View></View>` i InputComponent laves et TextInput felt med et `style prop, onChangeText og value`. Udfyld onChangeText med setInputValue funktionen: `onChangeText={(txt) => setInputValue(txt)}`. Values egenskaben sættes lig med inputValue fx: `value={inputValue}`
