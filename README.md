@@ -4,11 +4,15 @@
 #### slut resultat
 ![Screenshot](gif.gif)
 
-# Læs om View og Component
+# Læs om Components og Views 
+Læs om Core-Components her https://reactnative.dev/docs/intro-react-native-components
+og her https://reactnative.dev/docs/components-and-apis
+og evt. her https://reactjs.org/docs/components-and-props.html
+
 Læs mere om View her https://reactnative.dev/docs/view
 Til dette fag, benytter vi os primært af Functions Komponenter
 
-Læs mere om komponenter på https://reactjs.org/docs/components-and-props.html
+
 
 # Component
 
