@@ -16,7 +16,7 @@ Til dette fag, benytter vi os primært af Functions Komponenter
 
 # Component
 
-1. Lav et nyt expo projekt i din projekt mappe med `expo init 1_komponenter`og åben projektet i webstorm
+1. Lav et nyt expo projekt i din projekt mappe med `npx expo init 1_komponenter`og åben projektet i webstorm
 
 
 2. Opret en mappe i dit nyoprettet projekt ved navn components 
@@ -35,7 +35,7 @@ Til dette fag, benytter vi os primært af Functions Komponenter
 5.	Kør appen og se om den viser teksten (hvis den ikke viser teksten, læs hvad react native giver og fejl og fiks)
 
       
-6.	Lav nu en komponent kaldt PropsComponent og brug komponent templaten. I templaten skrives nu `const {name} = props ` over return funktionen. Og lav nu et `<Text></Text>` element som indeholder en prop, der kaldes "name". name modtager argumentet, `{name}`, hvorefter denne importeres i App.js - på samme måde, som med  FirstComponent.
+6.	Lav nu en komponent kaldt PropsComponent og brug komponent templaten. I templaten skrives nu `const {name} = props ` over return funktionen. Og lav nu et `<Text></Text>` element som indeholder en prop, der kaldes "name". name modtager argumentet, `{name}`, hvorefter denne importeres i App.js - på samme måde, som med  FirstComponent. PS.: Husk at importer Text!
 
 
 7.	I App.js skal værdien af name-argumentet defineres; ´<PropComponent name={'Jeres navne'}/>´
@@ -108,10 +108,10 @@ import { StyleSheet, View} from 'react-native';
 
 {/*HUSK AT SKIFTE NAVN*/}
 const FirstComponent = (props) => {
-
+   
     return (
             <View style={styles.container}>
-               {/*alt vores content*/}
+                {/*alt vores content*/}
             </View>
     );
 }
@@ -121,8 +121,10 @@ export default FirstComponent;
 
 const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        backgroundColor: '#fff',
+        backgroundColor: 'red',
+        height: 50,
+        borderRadius: 20,
+        width: '50%',
         alignItems: 'center',
         justifyContent: 'center',
     },
