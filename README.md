@@ -16,7 +16,7 @@ Til dette fag, benytter vi os primært af Functions Komponenter
 
 # Component
 
-1. Lav et nyt expo projekt i din projekt mappe med `expo init 1_komponenter`og åben projektet i webstorm
+1. Lav et nyt expo projekt i din projekt mappe med `npx create-expo-app <navnet på din app. f.eks. 1_komponenter>`og åben projektet i webstorm
 
 
 2. Opret en mappe i dit nyoprettet projekt ved navn components 
