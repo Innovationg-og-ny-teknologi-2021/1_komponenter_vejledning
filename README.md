@@ -1,132 +1,292 @@
-# 1_komponenter_vejledning
-### Components, props, states og assets
+# React Native Komponenter - ᕙ( ͡° ͜ʖ ͡°)ᕗ
 
-#### slut resultat
-![Screenshot](gif.gif)
-
+I denne guide skal vi arbejde med flere komponenter i React Native, hvor vi bruger `useState`, props, samt viser billeder. Du vil få bider af koden og instruktioner til, hvordan du skal færdiggøre komponenterne selv.
+ 
 # Læs om Components og Views 
-Læs om Core-Components her https://reactnative.dev/docs/intro-react-native-components
-og her https://reactnative.dev/docs/components-and-apis
-og evt. her https://reactjs.org/docs/components-and-props.html
+Læs om 
+- Core-Components her https://reactnative.dev/docs/intro-react-native-components
+- og her https://reactnative.dev/docs/components-and-apis
+- evt. her https://reactjs.org/docs/components-and-props.html
 
 Læs mere om View her https://reactnative.dev/docs/view
-Til dette fag, benytter vi os primært af Functions Komponenter
+
+Dit produkt kommer ca. til at se sådan her ud når du er færdig:
+![Screenshot](gif.gif)
+
+<br></br>
+
+## Del 1 - Opret projekt & komponent struktur
+
+1. Start med at åbne en terminal og navigere til den mappe du gerne vil gemme dit projekt i med `cd sti-til-din-mappe-her` i terminalen
+
+2. Opret et nyt React Native projekt:
+    ```
+    npx create-expo-app --template blank ComponentProject
+    ```
+    *Husk at navigere ind i projektet med `cd ComponentProject`*
+
+3. Opret følgende mappe og filer i roden af projektet:
+   - En mappe kaldet `components`
+   - Inde i `components`-mappen skal du oprette følgende filer:
+     - `FirstComponent.js`
+     - `InputComponent.js`
+     - `PropsComponent.js`
+     - `ButtonComponent.js`
+     - `AssetComponent.js`
+
+<br></br>
+
+## Del 2 - FirstComponent.js
+
+**FirstComponent** skal vise tekst inde i en `View` med en farvet baggrund.
+
+1. Åbn `FirstComponent.js`, og start med at oprette en funktionel komponent:
+    ```javascript
+    import React from 'react';
+    import { Text, View } from 'react-native';
+
+    const FirstComponent = () => {
+        return (
+            // Opret en View, og tilføj en Text-komponent indeni.
+        )
+    }
+
+    export default FirstComponent;
+    ```
+
+2. **Opgave**:
+   - Tilføj en `View` med en rød baggrundsfarve og indsæt en `Text`-komponent, der siger "Dette er den første component".
+   - Brug inline styles til at tilføje `backgroundColor:` og `marginBottom: 10`.
+
+3. **Import dit component til app.js**:
+    - Åbn `App.js`, og importer dit komponent:
+    ```javascript
+    import React from 'react';
+    import { StatusBar } from 'expo-status-bar';
+    import { StyleSheet, View } from 'react-native';
+    import FirstComponent from './components/FirstComponent';
+    ```
+
+    ```javascript
+        export default function App() {
+            return (
+                <View style={styles.container}>
+                    <View style={{flex: 1, backgroundColor: 'lightblue', alignItems: 'center', justifyContent: 'center', width: '100%'}}>
+                        <*Dit-komponent-her*/>
+                    </View>
+
+                    <StatusBar style="auto" />
+                </View>
+            );
+        }
+
+        const styles = StyleSheet.create({
+            container: {
+                flex: 1,
+                backgroundColor: '#fff',
+                alignItems: 'center',
+                justifyContent: 'center',
+                paddingTop: 50
+            },
+        });
+    ```
+    - Teste din app løbende mens du koder
+        Start din app ved at køre:
+        ```
+        npx expo start
+        ```
+
+    - Gør det samme for <b>ALLE de efterfølgende komponenter</b>
 
 
+<br></br>
 
-# Component
+## Del 3 - PropsComponent.js
 
-1. Lav et nyt expo projekt i din projekt mappe med `npx create-expo-app <navnet på din app. f.eks. 1_komponenter>`og åben projektet i webstorm
+**PropsComponent** skal modtage en prop og vise den i en tekst.
 
+1. Åbn `PropsComponent.js`, og opret en komponent, der modtager en prop:
+    ```javascript
+    import React from 'react';
+    import { Text, View } from 'react-native';
 
-2. Opret en mappe i dit nyoprettet projekt ved navn components 
+    const PropsComponent = ({ name }) => {
+        return (
+            // Opret en View og Text, der viser "Made by {name}"
+        )
+    }
 
+    export default PropsComponent;
+    ```
 
-3. Lav en ny komponent kaldt "FirstComponent", og brug templaten nederst i guiden. Tilføj nu et `<Text></Text>` element i return  
-    ![Screenshot](s1.png)
-    Sørg for at importere `Text` øverst!
+2. **Opgave**:
+   - Brug `props` til at vise en tekst med "Made by {name}".
 
+3. **App.js**:
+    - indsæt dit komponent sammen med det første i en ny view + `<PropsComponent name="Dit-navn-her"/>`
 
-4. Importer din komponent i App.js og implementer den i App.js’ return funktion i viewet. (Husk at return() kun kan returnere ét parent-element | evt google hvad et parent element og children elementer er)
-    `import FirstComponent from "./components/FirstComponent";`
-    `<FirstComponent/>`
+<br></br>
 
+## Del 4 - InputComponent.js
 
-5.	Kør appen og se om den viser teksten (hvis den ikke viser teksten, læs hvad react native giver og fejl og fiks)
+**InputComponent** skal bruge `useState` til at gemme en inputværdi og vise en tekst, som ændres baseret på brugerens input.
 
-      
-6.	Lav nu en komponent kaldt PropsComponent og brug komponent templaten. I templaten skrives nu `const {name} = props ` over return funktionen. Og lav nu et `<Text></Text>` element som indeholder en prop, der kaldes "name". name modtager argumentet, `{name}`, hvorefter denne importeres i App.js - på samme måde, som med  FirstComponent.
+1. Åbn `InputComponent.js`, og start med at importere de nødvendige hooks og komponenter:
+    ```javascript
+    import React, { useState } from 'react';
+    import { Text, TextInput, View } from 'react-native';
 
+    const InputComponent = () => {
+        // Opret en state til at gemme inputværdien
 
-7.	I App.js skal værdien af name-argumentet defineres; ´<PropComponent name={'Jeres navne'}/>´
-
-
-8.	Kør appen og se om den viser teksten, som du har angivet i App.js.
-
-
-9.	Opret flere instanser af din komponent i App.js’ return() og send forskellige tekster til hver af dem
-      
-
-10.	Opret nu en ny komponent kaldet ´ButtonComponent´. Deri laves en const instans, active, ved brug af useState(). active skal i udgangspunkt have værdien false:  `const [active, setActive] = useState(false)`
-
-
-10. b) 	Opret nu et `Text` element, der indeholder en conditional render funktion med en tilhørende knap, som kan ændre på active Staten
-    1. læs mere https://reactjs.org/docs/conditional-rendering.html#inline-if-else-with-conditional-operator ( se bort fra this.state)
-
-    
-11.	En Button skal altid have en title og en onPress prop. Til onPress vil vi ændre status på active med setActive: `onPress={()=> setActive(!active)}`  funktionen.
-    1. Prøv at se om du kan forklare hvad der sker i onpress funktionen 
-
-12.	Importer nu `ButtonComponent` i App.js, og test din nye knap
-
-
-13. Opret nu en ny komponent der kaldes ´InputComponent´. Deri laves en ny const instans, inputValue, ved brug af useState(). inputValue skal som udgangspunkt værdisættes ved brug af en tom string "";
-    1. se punkt 10
-    2. Huks at importere dine components øverst
-    3. `import React, {useState} from 'react'`
-        `import {Text, TextInput, View} from 'react-native'`
-
-
-14. I din `<View></View>` i InputComponent laves et TextInput felt med et `style prop, onChangeText og value`. Udfyld onChangeText med setInputValue funktionen: `onChangeText={(txt) => setInputValue(txt)}`. Values egenskaben sættes lig med inputValue fx: `value={inputValue}`
-    Prøv jer frem med stylingen
-    Læs mere https://reactnative.dev/docs/textinput
-    1. Husk at importere TextInput øverst
-       
-
-15. Importer nu `InputComponent` ind i App.js, og test dit nye input felt
-
-
-16. Opret en ny komponent ved navn `AssetComponent` i Components, og indsæt `url` som prop.
-
-
-17. I `<View></View>` hentes et Image element. Heri oprettes en src-prop: `source{url}` Læs mere https://reactnative.dev/docs/image
-    1. prøv jer frem med stylingen af billedet
-
-
-16. Import et billede fra assets mappen øverst i App.js: `import FirstImage from "./assets/favicon.png"` , og derefter importer AssetComponent og placer den i return funktionen med proppen url
-
-17. Giv nu `AssetComponent`, FirstImage som url værdien --> `<AssetComponent url={FirstImage}/> `
-    (Vigtigt: giv width og height til Image)
-    
-18. Overfør til sidst dit eget billede til projekt mappen og få det vist i din app
-
-
-**Ekstra:** Til sidst lav nu en multi funktions komponent hvor du anvender input, output og en knap f.eks. til at brugeren indtaster en tekst som konfirmeres eller noget helt andet
- 
-
-       
-#### Tips
-- Brug console.log(værdi) til når du debugger
-- Læs i appen hvad react native brokker sig over 
-- Læs docsen inde på https://reactnative.dev/docs/getting-started 
-
-#### Komponent template
-
-```
-import React from 'react';
-import { StyleSheet, View} from 'react-native';
-
-{/*HUSK AT SKIFTE NAVN*/}
-const FirstComponent = (props) => {
-
-    return (
-            <View style={styles.container}>
-               {/*alt vores content*/}
+        return (
+            <View>
+                {/* Opret en TextInput-komponent og en Text-komponent */}
             </View>
-    );
-}
+        )
+    }
 
-{/*HUSK AT SKIFTE NAVN*/}
-export default FirstComponent;
+    export default InputComponent;
+    ```
 
-const styles = StyleSheet.create({
-    container: {
+2. **Opgave**:
+   - Opret en state kaldet `inputValue` ved hjælp af `useState`.
+        - HINT: `const [inputValue, setInputValue] = useState("")`
+   - Opret en `TextInput`-komponent, der opdaterer state, når brugeren skriver tekst.
+        - HINT: `onChangeText={(txt) => setInputValue(txt)}` + `value={inputValue}`
+   - Lav en `Text`-komponent, der viser en dynamisk sætning baseret på det indtastede input.
+
+<br></br>
+
+## Del 5 - ButtonComponent.js
+
+**ButtonComponent** skal have en knap, der ændrer tekst, når den trykkes.
+
+1. Opret `ButtonComponent.js`, og start med at importere `useState` og de nødvendige komponenter:
+    ```javascript
+    import React, { useState } from 'react';
+    import { Button, Text, View } from 'react-native';
+
+    const ButtonComponent = () => {
+        // Opret en state til at tracke, om knappen er trykket
+
+        return (
+            <View>
+                {/* Opret en Text, der viser forskellig tekst afhængigt af state */}
+                {/* Opret en Button, der ændrer state når den trykkes */}
+            </View>
+        );
+    }
+
+    export default ButtonComponent;
+    ```
+
+2. **Opgave**:
+   - Opret en `useState` til at tracke om knappen er trykket.
+   - Skift mellem to tekster (f.eks. "Ja til kode!" og "Nej til kode") afhængigt af state.
+   - Opret en knap, der ændrer state, når den trykkes.
+
+<br></br>
+
+## Del 6 - AssetComponent.js
+
+**AssetComponent** skal vise et billede, der sendes som en prop.
+
+1. Opret `AssetComponent.js`, og importer `Image` og `View`:
+    ```javascript
+    import React from 'react';
+    import { Image, View } from 'react-native';
+
+    const AssetComponent = ({ url }) => {
+        return (
+            // Brug Image-komponenten til at vise billedet fra url
+        )
+    }
+
+    export default AssetComponent;
+    ```
+
+2. **Opgave**:
+   - Brug `props` til at modtage en `url` til et billede.
+   - Vis billedet ved hjælp af `Image`-komponenten, og stil billedet så det har en bredde og højde på 100 pixels.
+
+3. **APP.js**:
+    - Importere dit komponent som før og og sæt stien til `url={require('./assets/favicon.png')`
+
+<br></br>
+
+## Del 7 - Saml komponenterne i App.js
+
+1. Åbn `App.js`, og importer alle komponenterne:
+    ```javascript
+    import React from 'react';
+    import { StatusBar } from 'expo-status-bar';
+    import { StyleSheet, View } from 'react-native';
+    import FirstComponent from './components/FirstComponent';
+    import InputComponent from './components/InputComponent';
+    import ButtonComponent from './components/ButtonComponent';
+    import AssetComponent from './components/AssetComponent';
+    import PropsComponent from './components/PropsComponent';
+    ```
+
+2. **Opgave**:
+   - Placer hver komponent i en `View`-container med forskellige baggrundsfarver og justering.
+   - Brug `AssetComponent` til at vise et billede fra din lokale `assets`-mappe (f.eks. `favicon.png`).
+   - Brug `PropsComponent` med en prop værdi, f.eks. `"React Native Elev"`.
+
+   Brug dette som guide:
+    ```javascript
+    export default function App() {
+      return (
+        <View style={styles.container}>
+          <View style={{flex: 1, backgroundColor: 'lightblue', alignItems: 'center', justifyContent: 'center', width: '100%'}}>
+            <FirstComponent />
+          </View>
+
+          <View style={{flex: 1, backgroundColor: 'lightgray', alignItems: 'center', justifyContent: 'center', width: '100%'}}>
+            <InputComponent />
+          </View>
+
+          <View style={{flex: 4, backgroundColor: 'blue', alignItems: 'center', justifyContent: 'center', width: '100%'}}>
+            <AssetComponent url={require('./assets/favicon.png')} />
+          </View>
+
+          <View style={{flex: 1, backgroundColor: 'white', alignItems: 'center', justifyContent: 'center', width: '100%'}}>
+            <ButtonComponent />
+          </View>
+
+          <View style={{flex: 1, backgroundColor: 'gray', alignItems: 'center', justifyContent: 'center', width: '100%'}}>
+            <PropsComponent name="React Native Elev" />
+          </View>
+
+          <StatusBar style="auto" />
+        </View>
+      );
+    }
+
+    const styles = StyleSheet.create({
+      container: {
         flex: 1,
         backgroundColor: '#fff',
         alignItems: 'center',
         justifyContent: 'center',
-    },
-});
-`
+        paddingTop: 50
+      },
+    });
+    ```
 
+<br></br>
 
+## Del 8 - Test din app
+
+1. Start din app ved at køre:
+    ```
+    npx expo start
+    ```
+
+2. Tjek, om alle komponenterne vises korrekt, og at knappen fungerer som forventet.
+
+## Ekstra / Udfordring
+
+1. Tilpas stilen for hver komponent, så de passer til appens design.
+2. Prøv at ændre billedets størrelse dynamisk afhængigt af skærmstørrelsen.
